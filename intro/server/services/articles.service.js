@@ -567,7 +567,7 @@ module.exports = {
 		 */
 		transformResult(ctx, entities, user) {
 			if (Array.isArray(entities)) {
-				return this.Promise.map(entities, item => this.transformEntity(ctx, item, user))
+				return this.Promise.mapSeries(entities, item => this.transformEntity(ctx, item, user))
 					.then(articles => ({ articles }));
 			} else {
 				return this.transformEntity(ctx, entities, user)
